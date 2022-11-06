@@ -1,7 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-export default function FeedbackStats({feedback}) {
+import { useContext } from 'react';
+import FeedbackContext from './Context/FeedbackContest';
+export default function FeedbackStats() {
   
+    const {feedback}=useContext(FeedbackContext);
     //average reading
     let avg_reading = feedback.reduce((acc,curr)=>{
         return acc+curr.rating
