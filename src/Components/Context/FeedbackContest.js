@@ -20,7 +20,7 @@ fetchFeedback()
 
 const fetchFeedback = async()=>{
   const response = await fetch(
-    `http://localhost:5000/feedback?_sort=id&_order=desc`
+    `/feedback?_sort=id&_order=desc`
   )
   const data = await response.json()
   setFeedback(data)
@@ -36,11 +36,31 @@ const fetchFeedback = async()=>{
     }
   };
 
-  const addFeedback = (newFeedback) => {
-    newFeedback.id = uuidv4();
-    // add new object data
-    setFeedback([newFeedback, ...feedback]);
-  };
+  // for frontend part
+  // const addFeedback = (newFeedback) => {
+  //   newFeedback.id = uuidv4();
+  //   // add new object data
+  //   setFeedback([newFeedback, ...feedback]);
+
+  // };
+
+  // mock backend
+  const addFeedback = async (newFeedback)=>{
+
+    const response = await fetch(
+      `/feedback`, {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify(newFeedback)
+      })
+    
+const data = await response.json()
+console.log(data);
+setFeedback([data,...feedback]);
+  }
+
 
   const editFeedback = (item) => {
     setFeedbackEdit({
