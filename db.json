@@ -16,14 +16,9 @@
       "text": "This is feedback 3 response."
     },
     {
-      "rating": 10,
-      "text": "This is feedback 5 response.",
+      "text": "This is feedback 50000 response.",
+      "rating": 8,
       "id": 4
-    },
-    {
-      "text": "fdfdfdfdfdfdf",
-      "rating": 7,
-      "id": 5
     }
   ]
 }

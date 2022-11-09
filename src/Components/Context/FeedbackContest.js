@@ -30,21 +30,21 @@ const fetchFeedback = async()=>{
 
 
 
-  const deleteFeedback = (id) => {
+  const deleteFeedback = async (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
+
+      const response = await fetch(
+        `/feedback/${id}`, {
+          method:'DELETE',
+         
+        
+        })
+      
       setFeedback(feedback.filter((item) => item.id !== id));
     }
   };
 
-  // for frontend part
-  // const addFeedback = (newFeedback) => {
-  //   newFeedback.id = uuidv4();
-  //   // add new object data
-  //   setFeedback([newFeedback, ...feedback]);
 
-  // };
-
-  // mock backend
   const addFeedback = async (newFeedback)=>{
 
     const response = await fetch(
@@ -57,7 +57,6 @@ const fetchFeedback = async()=>{
       })
     
 const data = await response.json()
-console.log(data);
 setFeedback([data,...feedback]);
   }
 
@@ -69,9 +68,20 @@ setFeedback([data,...feedback]);
     });
   };
 
-  const updateFeedback = (id, updItem) => {
+  const updateFeedback = async(id, updItem) => {
+
+    const response = await fetch(
+      `/feedback/${id}`, {
+        method:'PUT',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify(updItem)
+      })
+const data = await response.json()
+console.log(data);
     setFeedback(
-      feedback.map((item) => (item.id === id ? { ...item, ...updItem } : item))
+      feedback.map((item) => (item.id === id ? { ...item, ...data } : item))
     );
   };
 
